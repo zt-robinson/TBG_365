@@ -444,9 +444,9 @@
         { name: "Ace", badge: "Premium", price: "$329", period: "/ month", hours: 14, rate: "$23.50/hr", discount: "35%", booking: "14-day", featured: false }
       ],
       annual: [
-        { name: "Birdie Annual", badge: "Annual Value", price: "$1,099", period: "/ year", monthlyEquivalent: "$91.58/mo effective", hours: 48, rate: "$22.90/hr", discount: "20%", booking: "7-day", featured: false },
-        { name: "Eagle Annual", badge: "Best Annual Value", price: "$1,999", period: "/ year", monthlyEquivalent: "$166.58/mo effective", hours: 96, rate: "$20.82/hr", discount: "30%", booking: "10-day", featured: true },
-        { name: "Ace Annual", badge: "Premium Annual", price: "$3,199", period: "/ year", monthlyEquivalent: "$266.58/mo effective", hours: 168, rate: "$19.04/hr", discount: "35%", booking: "14-day", featured: false }
+        { name: "Birdie Annual", badge: "Annual Value", price: "$1,099", period: "/ year", savings: "Save 16%", hours: 48, rate: "$22.90/hr", discount: "20%", booking: "7-day", featured: false },
+        { name: "Eagle Annual", badge: "Best Annual Value", price: "$1,999", period: "/ year", savings: "Save 16%", hours: 96, rate: "$20.82/hr", discount: "30%", booking: "10-day", featured: true },
+        { name: "Ace Annual", badge: "Premium Annual", price: "$3,199", period: "/ year", savings: "Save 19%", hours: 168, rate: "$19.04/hr", discount: "35%", booking: "14-day", featured: false }
       ]
     };
 
@@ -464,7 +464,7 @@
             <h3>${plan.name}</h3>
             <div class="price">${plan.price} <span>${plan.period}</span></div>
             <div class="hour-rate">${plan.rate}</div>
-            ${type === "annual" ? `<div class="sub"><strong>${plan.monthlyEquivalent}</strong></div>` : ""}
+            ${type === "annual" ? `<div class="badge">${plan.savings}</div>` : ""}
             <div class="sub">${plan.hours} included hours ${type === "monthly" ? "monthly" : "annually"}</div>
             <ul>
               <li>${plan.discount} off extra hours</li>
