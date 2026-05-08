@@ -403,6 +403,49 @@
       .corp-card {
         grid-template-columns: 1fr;
       }
+
+      .plan-top {
+        align-items: flex-start;
+      }
+      
+      .savings-pill {
+        margin-top: 1px;
+      }
+      
+      .rate-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      
+      .rate-row .rate-line {
+        margin-bottom: 0;
+      }
+      
+      .save-inline {
+        background: rgba(183,224,74,.14);
+        color: var(--lime);
+        border: 1px solid rgba(183,224,74,.35);
+        padding: 3px 7px;
+        border-radius: 999px;
+        font-size: .68rem;
+        font-weight: 950;
+        text-transform: uppercase;
+      }
+      
+      .compact-placeholder {
+        min-height: unset;
+      }
+      
+      .placeholder-text {
+        margin: 18px 0 10px;
+        font-size: 1.25rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
     }
   </style>
 </head>
@@ -643,7 +686,8 @@
           tooltip: "Flex is intended as a lower-commitment monthly option. Annual plans begin at Birdie.",
           details: ["Monthly Flex remains available", "Upgrade to Birdie Annual for annual savings", "Best for casual users"],
           featured: false,
-          disabled: true
+          disabled: true,
+          placeholder: true
         },
         {
           name: "Birdie",
@@ -652,7 +696,8 @@
           period: "/ year",
           hoursText: "48 HRS / year",
           rate: "avg. $22.90/hr",
-          savings: "Save 16%",
+          savings: "Annual",
+          saveInline: "Save 16%",
           tooltip: "Annual savings compared to paying the Birdie monthly rate for 12 months.",
           details: ["20% off extra hours", "7-day advance booking", "Limited one-month rollover"],
           featured: false,
@@ -665,7 +710,8 @@
           period: "/ year",
           hoursText: "96 HRS / year",
           rate: "avg. $20.82/hr",
-          savings: "Save 16%",
+          savings: "Annual",
+          saveInline: "Save 16%",
           tooltip: "Annual savings compared to paying the Eagle monthly rate for 12 months.",
           details: ["30% off extra hours", "10-day advance booking", "Limited one-month rollover"],
           featured: true,
@@ -678,7 +724,8 @@
           period: "/ year",
           hoursText: "168 HRS / year",
           rate: "avg. $19.04/hr",
-          savings: "Save 19%",
+          savings: "Annual",
+          saveInline: "Save 19%",
           tooltip: "Annual savings compared to paying the Ace monthly rate for 12 months.",
           details: ["35% off extra hours", "14-day advance booking", "Limited one-month rollover"],
           featured: false,
@@ -694,6 +741,24 @@
     function renderMemberships(type) {
       grid.innerHTML = "";
 
+      if (plan.placeholder) {
+        grid.innerHTML += `
+          <div class="card disabled compact-placeholder">
+            <div class="plan-top">
+              <h3 class="plan-name">${plan.name}</h3>
+              <span class="savings-pill">Monthly Only</span>
+            </div>
+            <div class="placeholder-text">No annual Flex plan</div>
+            <div class="details">
+              <div>Monthly Flex remains available.</div>
+              <div>Annual plans begin at Birdie.</div>
+            </div>
+            <a href="#" class="button disabled-btn">Monthly Only</a>
+          </div>
+        `;
+        return;
+      }
+    
       memberships[type].forEach(plan => {
         grid.innerHTML += `
           <div class="card ${plan.featured ? "featured" : ""} ${plan.disabled ? "disabled" : ""}">
@@ -710,7 +775,10 @@
 
             <div class="price">${plan.price} <span>${plan.period}</span></div>
             <div class="hours-line">${plan.hoursText}</div>
-            <div class="rate-line">${plan.rate}</div>
+            <div class="rate-row">
+              <div class="rate-line">${plan.rate}</div>
+              ${plan.saveInline ? `<span class="save-inline">${plan.saveInline}</span>` : ""}
+            </div>
 
             <div class="details">
               ${plan.details.map(item => `<div>${item}</div>`).join("")}
