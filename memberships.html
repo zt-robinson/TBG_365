@@ -7,15 +7,14 @@
 
   <style>
     :root {
-      --black: #070707;
+      --black: #050505;
       --charcoal: #111411;
       --panel: #181c18;
       --panel2: #20251f;
-      --white: #f7f7f2;
-      --muted: #b9beb3;
-      --line: rgba(255,255,255,.12);
+      --white: #f5f5f0;
+      --muted: #afb5aa;
+      --line: rgba(255,255,255,.1);
       --lime: #b7e04a;
-      --lime2: #8fcf2f;
       --orange: #ff7a1a;
       --shadow: 0 20px 55px rgba(0,0,0,.35);
     }
@@ -24,42 +23,87 @@
 
     body {
       margin: 0;
-      font-family: Inter, "Segoe UI", Arial, sans-serif;
       background: var(--black);
       color: var(--white);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: rgba(5,5,5,.84);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      max-width: 1220px;
+      margin: auto;
+      padding: 16px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .logo span { color: var(--lime); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .92rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--lime);
     }
 
     header {
-      padding: 54px 24px 46px;
+      padding: 52px 22px 42px;
       background:
-        radial-gradient(circle at 80% 15%, rgba(183,224,74,.22), transparent 26%),
+        radial-gradient(circle at 85% 20%, rgba(183,224,74,.2), transparent 24%),
         linear-gradient(135deg, #0a0d0a, #151a14);
       border-bottom: 1px solid var(--line);
       text-align: center;
     }
 
-    header .eyebrow {
+    .eyebrow {
       color: var(--lime);
-      letter-spacing: .28em;
-      font-size: .78rem;
-      font-weight: 900;
       text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: .22em;
       margin-bottom: 14px;
+      font-size: .78rem;
     }
 
     header h1 {
       margin: 0;
-      font-size: clamp(2.4rem, 6vw, 5.2rem);
+      font-size: clamp(2.4rem, 6vw, 5rem);
       line-height: .95;
-      letter-spacing: .04em;
       text-transform: uppercase;
     }
 
     header p {
       max-width: 760px;
-      margin: 20px auto 0;
+      margin: 18px auto 0;
       color: var(--muted);
       font-size: 1.05rem;
+      line-height: 1.6;
     }
 
     .container {
@@ -95,7 +139,6 @@
       padding: 5px;
       border-radius: 999px;
       border: 1px solid var(--line);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
     }
 
     .toggle button {
@@ -217,94 +260,20 @@
       color: #dce8c0;
     }
 
-    .public-panel {
+    .corp-card {
       display: grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap: 16px;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items: start;
     }
 
-    .rate-now {
-      background:
-        radial-gradient(circle at 90% 10%, rgba(255,122,26,.25), transparent 28%),
-        linear-gradient(180deg, #161b15, #0b0d0b);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: var(--shadow);
+    .corp-note {
+      background: rgba(255,122,26,.08);
+      border: 1px solid rgba(255,122,26,.32);
+      color: #ffd7bd;
+      padding: 18px;
+      border-radius: 14px;
     }
-
-    .rate-now h2 { color: var(--white); }
-
-    .rate-now p {
-      color: var(--muted);
-    }
-
-    .rate-now .big {
-      font-size: 3.8rem;
-      font-weight: 950;
-      color: var(--lime);
-      letter-spacing: -.07em;
-      margin: 8px 0 0;
-    }
-
-    .slot-list {
-      background: linear-gradient(180deg, var(--panel2), var(--panel));
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: var(--shadow);
-    }
-
-    .slot-list h3 {
-      margin: 0 0 8px;
-      text-transform: uppercase;
-      letter-spacing: .03em;
-    }
-
-    .slot {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 11px 0;
-      border-bottom: 1px solid var(--line);
-      color: var(--muted);
-    }
-
-    .slot strong {
-      color: var(--white);
-    }
-
-    .slot:last-child { border-bottom: 0; }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    th, td {
-      padding: 13px;
-      border-bottom: 1px solid var(--line);
-      text-align: left;
-    }
-
-    th {
-      background: #0d100d;
-      color: var(--lime);
-      text-transform: uppercase;
-      font-size: .8rem;
-      letter-spacing: .06em;
-    }
-
-    td {
-      color: #e9ece5;
-    }
-
-    tr:last-child td { border-bottom: 0; }
 
     footer {
       margin-top: 28px;
@@ -324,7 +293,7 @@
         margin-top: 16px;
       }
 
-      .public-panel {
+      .corp-card {
         grid-template-columns: 1fr;
       }
     }
@@ -332,40 +301,36 @@
 </head>
 
 <body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">The Bunker <span>365</span></div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="memberships.html" class="active">Memberships</a>
+        <a href="#">Rates</a>
+        <a href="#">Lessons</a>
+        <a href="#">Leagues</a>
+        <a href="#">Events</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </nav>
+
   <header>
-    <div class="eyebrow">Your golf season. Extended.</div>
-    <h1>The Bunker Golf 365</h1>
-    <p>Indoor golf memberships, practice packs, leagues, and player development programs built around how you actually play.</p>
+    <div class="eyebrow">Membership Options</div>
+    <h1>Play More. Pay Less.</h1>
+    <p>Memberships are built for golfers who want predictable access, better hourly value, and priority booking without making simulator golf complicated.</p>
   </header>
 
   <main>
 
     <section class="container">
-      <div class="public-panel">
-        <div class="rate-now">
-          <div class="badge">Nonmember Booking</div>
-          <h2>Book Without a Membership</h2>
-          <p>Nonmembers can book available simulator time up to 24 hours in advance at dynamic public pricing.</p>
-          <div class="big">$45</div>
-          <p>Current public rate estimate</p>
-        </div>
-
-        <div class="slot-list">
-          <h3>Upcoming Public Rates</h3>
-          <div class="slot"><span>Today · 4:00 PM</span><strong>$45/hr</strong></div>
-          <div class="slot"><span>Today · 6:00 PM</span><strong>$55/hr</strong></div>
-          <div class="slot"><span>Tonight · 9:00 PM</span><strong>$35/hr</strong></div>
-          <div class="slot"><span>Tomorrow · 10:00 AM</span><strong>$30/hr</strong></div>
-          <div class="slot"><span>Saturday · Prime Time</span><strong>$70/hr</strong></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="container">
       <div class="section-head">
         <div>
-          <h2>Memberships</h2>
-          <p>Best for golfers who want recurring access, better hourly value, and advance booking privileges.</p>
+          <h2>Individual Memberships</h2>
+          <p>Choose monthly flexibility or annual value. Included hours may be used whenever space is available.</p>
         </div>
 
         <div class="toggle">
@@ -377,138 +342,89 @@
       <div class="grid" id="membershipGrid"></div>
 
       <div class="callout">
-        Membership hours may be used at any available booking time. Annual memberships include limited one-month rollover of unused hours.
+        Annual memberships include limited one-month rollover of unused hours. Extra-hour discounts apply after included hours are used.
       </div>
     </section>
 
     <section class="container">
       <div class="section-head">
         <div>
-          <h2>Practice Packs</h2>
-          <p>Prepaid hours for golfers who want better value without a recurring membership.</p>
+          <h2>Family Memberships</h2>
+          <p>Shared household plans for families who want to practice, play, and improve together.</p>
         </div>
       </div>
 
       <div class="grid">
         <div class="card">
-          <h3>5-Hour Practice Pack</h3>
-          <div class="price">$209</div>
-          <div class="hour-rate">$41.80/hr</div>
-          <div class="sub">Expires 3 months after purchase</div>
-        </div>
-
-        <div class="card">
-          <h3>10-Hour Practice Pack</h3>
-          <div class="price">$399</div>
-          <div class="hour-rate">$39.90/hr</div>
-          <div class="sub">Expires 6 months after purchase</div>
-        </div>
-
-        <div class="card">
-          <h3>20-Hour Practice Pack</h3>
-          <div class="price">$749</div>
-          <div class="hour-rate">$37.45/hr</div>
-          <div class="sub">Expires 12 months after purchase</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="section-head">
-        <div>
-          <h2>Offseason Practice Pass</h2>
-          <p>A focused training pass for golfers preparing for the next outdoor season.</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Offseason Practice Pass</h3>
-        <div class="price">$549</div>
-        <div class="hour-rate">$30.50/hr</div>
-        <div class="sub">18 included hours · valid October through February</div>
-        <ul>
-          <li>Use hours anytime space is available</li>
-          <li>15% off additional hours during the pass period</li>
-          <li>Designed for steady offseason improvement</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="section-head">
-        <div>
-          <h2>Player Development Programs</h2>
-          <p>Structured coaching plus simulator practice time for golfers who want measurable improvement.</p>
-        </div>
-      </div>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Program</th>
-            <th>Includes</th>
-            <th>Price</th>
-            <th>Best For</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Starter Development</td>
-            <td>2 lessons + 6 practice hours</td>
-            <td>$429</td>
-            <td>Building a foundation</td>
-          </tr>
-          <tr>
-            <td>Performance Development</td>
-            <td>4 lessons + 12 practice hours</td>
-            <td>$799</td>
-            <td>Structured improvement</td>
-          </tr>
-          <tr>
-            <td>Competitive Development</td>
-            <td>6 lessons + 18 practice hours</td>
-            <td>$1,199</td>
-            <td>Serious players</td>
-          </tr>
-          <tr>
-            <td>Junior Programs</td>
-            <td>Youth-focused versions available</td>
-            <td>Starting at $349</td>
-            <td>Junior golfers</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="container">
-      <div class="section-head">
-        <div>
-          <h2>Sim Leagues</h2>
-          <p>Weekly simulator events, season-long standings, playoffs, and prize pools.</p>
-        </div>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Solo League</h3>
-          <div class="price">8 weeks</div>
-          <div class="sub">One official round per week</div>
+          <span class="badge">Family</span>
+          <h3>Birdie Family</h3>
+          <div class="price">$149 <span>/ month</span></div>
+          <div class="hour-rate">$29.80/hr</div>
+          <div class="sub">5 shared hours monthly</div>
           <ul>
-            <li>Weekly leaderboard events</li>
-            <li>Season-long points race</li>
-            <li>Championship playoff format</li>
+            <li>Up to 4 household users</li>
+            <li>Shared hour pool</li>
+            <li>7-day advance booking</li>
           </ul>
+          <a href="#" class="button secondary">Choose Birdie Family</a>
         </div>
 
         <div class="card">
-          <h3>Two-Man Best Ball</h3>
-          <div class="price">8 weeks</div>
-          <div class="sub">Team format with weekly scoring</div>
+          <span class="badge">Family</span>
+          <h3>Eagle Family</h3>
+          <div class="price">$279 <span>/ month</span></div>
+          <div class="hour-rate">$27.90/hr</div>
+          <div class="sub">10 shared hours monthly</div>
           <ul>
-            <li>Best ball format</li>
-            <li>Team leaderboard</li>
-            <li>Season-end championship</li>
+            <li>Up to 4 household users</li>
+            <li>Shared hour pool</li>
+            <li>10-day advance booking</li>
           </ul>
+          <a href="#" class="button secondary">Choose Eagle Family</a>
+        </div>
+
+        <div class="card featured">
+          <span class="badge">Family Premium</span>
+          <h3>Ace Family</h3>
+          <div class="price">$449 <span>/ month</span></div>
+          <div class="hour-rate">$26.41/hr</div>
+          <div class="sub">17 shared hours monthly</div>
+          <ul>
+            <li>Up to 4 household users</li>
+            <li>Shared hour pool</li>
+            <li>14-day advance booking</li>
+          </ul>
+          <a href="#" class="button">Choose Ace Family</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="section-head">
+        <div>
+          <h2>Corporate Membership</h2>
+          <p>For businesses that want a flexible golf amenity for employees, clients, team events, and company outings.</p>
+        </div>
+      </div>
+
+      <div class="card corp-card">
+        <div>
+          <span class="badge">Business Access</span>
+          <h3>Corporate Membership</h3>
+          <div class="price">$7,199 <span>/ year</span></div>
+          <div class="hour-rate">$599.92/mo effective · $30.00/hr</div>
+          <div class="sub">240 shared annual hours</div>
+          <ul>
+            <li>Shared access for company users</li>
+            <li>40% off additional hours</li>
+            <li>21-day advance booking</li>
+            <li>Useful for client entertainment, employee perks, and team recreation</li>
+          </ul>
+          <a href="#" class="button">Ask About Corporate</a>
+        </div>
+
+        <div class="corp-note">
+          Corporate access is not just discounted simulator time. It is designed as a flexible business amenity: easier client hosting, recurring team recreation, and year-round indoor golf access without weather dependency.
         </div>
       </div>
     </section>
@@ -516,7 +432,7 @@
   </main>
 
   <footer>
-    The Bunker Golf 365 · Indoor golf, practice, training, and competition.
+    The Bunker Golf 365 · Indoor golf memberships and year-round access
   </footer>
 
   <script>
@@ -530,8 +446,7 @@
       annual: [
         { name: "Birdie Annual", badge: "Annual Value", price: "$1,099", period: "/ year", monthlyEquivalent: "$91.58/mo effective", hours: 48, rate: "$22.90/hr", discount: "20%", booking: "7-day", featured: false },
         { name: "Eagle Annual", badge: "Best Annual Value", price: "$1,999", period: "/ year", monthlyEquivalent: "$166.58/mo effective", hours: 96, rate: "$20.82/hr", discount: "30%", booking: "10-day", featured: true },
-        { name: "Ace Annual", badge: "Premium Annual", price: "$3,199", period: "/ year", monthlyEquivalent: "$266.58/mo effective", hours: 168, rate: "$19.04/hr", discount: "35%", booking: "14-day", featured: false },
-        { name: "Corporate Annual", badge: "Business", price: "$7,199", period: "/ year", monthlyEquivalent: "$599.92/mo effective", hours: 240, rate: "$30.00/hr", discount: "40%", booking: "21-day", featured: false }
+        { name: "Ace Annual", badge: "Premium Annual", price: "$3,199", period: "/ year", monthlyEquivalent: "$266.58/mo effective", hours: 168, rate: "$19.04/hr", discount: "35%", booking: "14-day", featured: false }
       ]
     };
 
@@ -576,5 +491,6 @@
 
     renderMemberships("monthly");
   </script>
+
 </body>
 </html>
