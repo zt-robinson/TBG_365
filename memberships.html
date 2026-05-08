@@ -201,6 +201,20 @@
       letter-spacing: .02em;
     }
 
+    .billing-tag {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(183,224,74,.35);
+      color: var(--lime);
+      background: rgba(183,224,74,.08);
+      font-size: .62rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      vertical-align: middle;
+    }
+
     .savings-pill {
       display: inline-flex;
       align-items: center;
@@ -632,7 +646,8 @@
           disabled: true
         },
         {
-          name: "Birdie Annual",
+          name: "Birdie",
+          billingTag: "Annual",
           price: "$1,099",
           period: "/ year",
           hoursText: "48 HRS / year",
@@ -644,7 +659,8 @@
           disabled: false
         },
         {
-          name: "Eagle Annual",
+          name: "Eagle",
+          billingTag: "Annual",
           price: "$1,999",
           period: "/ year",
           hoursText: "96 HRS / year",
@@ -656,7 +672,8 @@
           disabled: false
         },
         {
-          name: "Ace Annual",
+          name: "Ace",
+          billingTag: "Annual",
           price: "$3,199",
           period: "/ year",
           hoursText: "168 HRS / year",
@@ -681,7 +698,10 @@
         grid.innerHTML += `
           <div class="card ${plan.featured ? "featured" : ""} ${plan.disabled ? "disabled" : ""}">
             <div class="plan-top">
-              <h3 class="plan-name">${plan.name}</h3>
+              <h3 class="plan-name">
+                ${plan.name}
+                ${plan.billingTag ? `<span class="billing-tag">${plan.billingTag}</span>` : ""}
+              </h3>
               <span class="savings-pill">
                 ${plan.savings}
                 <span class="info-dot" data-tip="${plan.tooltip}">?</span>
