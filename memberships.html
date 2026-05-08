@@ -170,7 +170,7 @@
       background: linear-gradient(180deg, var(--panel2), var(--panel));
       border: 1px solid var(--line);
       border-radius: 18px;
-      padding: 18px;
+      padding: 17px;
       box-shadow: var(--shadow);
     }
 
@@ -180,59 +180,82 @@
     }
 
     .card.disabled {
-      opacity: .48;
-      filter: grayscale(.4);
+      opacity: .45;
+      filter: grayscale(.45);
       border-style: dashed;
     }
 
-    .badge {
-      display: inline-block;
-      background: rgba(183,224,74,.12);
-      color: var(--lime);
-      border: 1px solid rgba(183,224,74,.35);
-      padding: 4px 9px;
-      border-radius: 999px;
-      font-size: .68rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .04em;
+    .plan-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
       margin-bottom: 10px;
     }
 
-    .save-badge {
-      display: inline-block;
-      background: var(--lime);
-      color: #101410;
-      padding: 4px 9px;
-      border-radius: 999px;
-      font-size: .68rem;
-      font-weight: 950;
-      text-transform: uppercase;
-      margin-left: 8px;
-      vertical-align: middle;
-    }
-
-    .card h3 {
-      margin: 0 0 4px;
-      font-size: 1.15rem;
+    .plan-name {
+      margin: 0;
+      font-size: 1.18rem;
+      line-height: 1.1;
       text-transform: uppercase;
       letter-spacing: .02em;
     }
 
-    .price-row {
-      margin-top: 10px;
-      display: flex;
+    .savings-pill {
+      display: inline-flex;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 6px;
+      gap: 5px;
+      white-space: nowrap;
+      background: var(--lime);
+      color: #101410;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: .66rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .info-dot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(16,20,16,.22);
+      color: #101410;
+      font-size: .68rem;
+      font-weight: 950;
+      cursor: help;
+      position: relative;
+    }
+
+    .info-dot:hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      right: 0;
+      top: 22px;
+      width: 230px;
+      padding: 10px;
+      border-radius: 10px;
+      background: #f5f5f0;
+      color: #101410;
+      font-size: .74rem;
+      font-weight: 700;
+      line-height: 1.35;
+      text-transform: none;
+      z-index: 20;
+      box-shadow: 0 12px 30px rgba(0,0,0,.35);
     }
 
     .price {
-      margin: 0;
-      font-size: 2rem;
+      margin: 0 0 8px;
+      font-size: 2.25rem;
       font-weight: 950;
       color: var(--white);
       letter-spacing: -.05em;
+      line-height: 1;
     }
 
     .price span {
@@ -242,48 +265,33 @@
       letter-spacing: 0;
     }
 
-    .hours-block {
-      margin: 12px 0 10px;
-      padding: 12px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.045);
-      border: 1px solid rgba(255,255,255,.08);
-    }
-
-    .hours-main {
+    .hours-line {
       color: var(--white);
-      font-size: 1.42rem;
+      font-size: 1.45rem;
       font-weight: 950;
-      letter-spacing: -.02em;
       text-transform: uppercase;
-      line-height: 1.1;
+      letter-spacing: -.02em;
+      line-height: 1.05;
+      margin-bottom: 3px;
     }
 
-    .hours-sub {
-      margin-top: 4px;
+    .rate-line {
       color: var(--lime);
-      font-size: .92rem;
+      font-size: .94rem;
       font-weight: 900;
+      margin-bottom: 12px;
     }
 
-    .compare-note {
-      color: var(--muted);
-      font-size: .82rem;
-      line-height: 1.35;
-      margin-top: 6px;
-    }
-
-    ul {
-      margin: 10px 0 16px;
-      padding-left: 18px;
+    .details {
+      margin: 0 0 15px;
       color: #d9ddd5;
       font-style: italic;
+      font-size: .86rem;
+      line-height: 1.45;
     }
 
-    li {
-      margin-bottom: 5px;
-      line-height: 1.35;
-      font-size: .88rem;
+    .details div {
+      margin-bottom: 3px;
     }
 
     .button {
@@ -434,59 +442,68 @@
 
       <div class="grid family-grid">
         <div class="card">
-          <span class="badge">Family</span>
-          <h3>Birdie Family</h3>
-          <div class="price-row">
-            <div class="price">$149 <span>/ month</span></div>
+          <div class="plan-top">
+            <h3 class="plan-name">Birdie Family</h3>
+            <span class="savings-pill">
+              Save ~$76/mo
+              <span class="info-dot" data-tip="Compared to a nonmember booking 5 hours at an average public dynamic rate of about $45/hr.">?</span>
+            </span>
           </div>
-          <div class="hours-block">
-            <div class="hours-main">5 HRS/month</div>
-            <div class="hours-sub">avg. $29.80/hr</div>
-            <div class="compare-note">Compared with roughly $90 for 2 public hours at the average dynamic rate.</div>
+
+          <div class="price">$149 <span>/ month</span></div>
+          <div class="hours-line">5 HRS / month</div>
+          <div class="rate-line">avg. $29.80/hr</div>
+
+          <div class="details">
+            <div>Up to 4 household users</div>
+            <div>Shared hour pool</div>
+            <div>7-day advance booking</div>
           </div>
-          <ul>
-            <li>Up to 4 household users</li>
-            <li>Shared hour pool</li>
-            <li>7-day advance booking</li>
-          </ul>
+
           <a href="#" class="button secondary">Choose Birdie Family</a>
         </div>
 
         <div class="card">
-          <span class="badge">Family</span>
-          <h3>Eagle Family</h3>
-          <div class="price-row">
-            <div class="price">$279 <span>/ month</span></div>
+          <div class="plan-top">
+            <h3 class="plan-name">Eagle Family</h3>
+            <span class="savings-pill">
+              Save ~$171/mo
+              <span class="info-dot" data-tip="Compared to a nonmember booking 10 hours at an average public dynamic rate of about $45/hr.">?</span>
+            </span>
           </div>
-          <div class="hours-block">
-            <div class="hours-main">10 HRS/month</div>
-            <div class="hours-sub">avg. $27.90/hr</div>
-            <div class="compare-note">Compared with roughly $90 for 2 public hours at the average dynamic rate.</div>
+
+          <div class="price">$279 <span>/ month</span></div>
+          <div class="hours-line">10 HRS / month</div>
+          <div class="rate-line">avg. $27.90/hr</div>
+
+          <div class="details">
+            <div>Up to 4 household users</div>
+            <div>Shared hour pool</div>
+            <div>10-day advance booking</div>
           </div>
-          <ul>
-            <li>Up to 4 household users</li>
-            <li>Shared hour pool</li>
-            <li>10-day advance booking</li>
-          </ul>
+
           <a href="#" class="button secondary">Choose Eagle Family</a>
         </div>
 
         <div class="card featured">
-          <span class="badge">Family Premium</span>
-          <h3>Ace Family</h3>
-          <div class="price-row">
-            <div class="price">$449 <span>/ month</span></div>
+          <div class="plan-top">
+            <h3 class="plan-name">Ace Family</h3>
+            <span class="savings-pill">
+              Save ~$316/mo
+              <span class="info-dot" data-tip="Compared to a nonmember booking 17 hours at an average public dynamic rate of about $45/hr.">?</span>
+            </span>
           </div>
-          <div class="hours-block">
-            <div class="hours-main">17 HRS/month</div>
-            <div class="hours-sub">avg. $26.41/hr</div>
-            <div class="compare-note">Compared with roughly $90 for 2 public hours at the average dynamic rate.</div>
+
+          <div class="price">$449 <span>/ month</span></div>
+          <div class="hours-line">17 HRS / month</div>
+          <div class="rate-line">avg. $26.41/hr</div>
+
+          <div class="details">
+            <div>Up to 4 household users</div>
+            <div>Shared hour pool</div>
+            <div>14-day advance booking</div>
           </div>
-          <ul>
-            <li>Up to 4 household users</li>
-            <li>Shared hour pool</li>
-            <li>14-day advance booking</li>
-          </ul>
+
           <a href="#" class="button">Choose Ace Family</a>
         </div>
       </div>
@@ -502,21 +519,25 @@
 
       <div class="card corp-card">
         <div>
-          <span class="badge">Business Access</span>
-          <h3>Corporate Membership</h3>
-          <div class="price-row">
-            <div class="price">$7,199 <span>/ year</span></div>
+          <div class="plan-top">
+            <h3 class="plan-name">Corporate Membership</h3>
+            <span class="savings-pill">
+              Business
+              <span class="info-dot" data-tip="Corporate access is designed around shared organizational use, client hosting, and employee recreation.">?</span>
+            </span>
           </div>
-          <div class="hours-block">
-            <div class="hours-main">240 HRS/year</div>
-            <div class="hours-sub">avg. $30.00/hr · $599.92/mo effective</div>
+
+          <div class="price">$7,199 <span>/ year</span></div>
+          <div class="hours-line">240 HRS / year</div>
+          <div class="rate-line">avg. $30.00/hr</div>
+
+          <div class="details">
+            <div>Shared access for company users</div>
+            <div>40% off additional hours</div>
+            <div>21-day advance booking</div>
+            <div>Client entertainment, employee perks, and team recreation</div>
           </div>
-          <ul>
-            <li>Shared access for company users</li>
-            <li>40% off additional hours</li>
-            <li>21-day advance booking</li>
-            <li>Client entertainment, employee perks, and team recreation</li>
-          </ul>
+
           <a href="#" class="button">Ask About Corporate</a>
         </div>
 
@@ -533,57 +554,59 @@
   </footer>
 
   <script>
+    const publicRate = 45;
+
     const memberships = {
       monthly: [
         {
           name: "Flex",
-          badge: "Casual",
           price: "$59",
           period: "/ month",
-          hoursText: "2 HRS/month",
+          hours: 2,
+          hoursText: "2 HRS / month",
           rate: "avg. $29.50/hr",
-          comparison: "Compared with roughly $90 for 2 public hours at the average dynamic rate.",
-          discount: "10%",
-          booking: "3-day",
+          savings: "Save ~$31/mo",
+          tooltip: "Compared to a nonmember booking 2 hours at an average public dynamic rate of about $45/hr.",
+          details: ["10% off extra hours", "3-day advance booking", "Best for light, occasional use"],
           featured: false,
           disabled: false
         },
         {
           name: "Birdie",
-          badge: "Core",
           price: "$109",
           period: "/ month",
-          hoursText: "4 HRS/month",
+          hours: 4,
+          hoursText: "4 HRS / month",
           rate: "avg. $27.25/hr",
-          comparison: "Compared with roughly $90 for 2 public hours at the average dynamic rate.",
-          discount: "20%",
-          booking: "7-day",
+          savings: "Save ~$71/mo",
+          tooltip: "Compared to a nonmember booking 4 hours at an average public dynamic rate of about $45/hr.",
+          details: ["20% off extra hours", "7-day advance booking", "Best for regular practice"],
           featured: false,
           disabled: false
         },
         {
           name: "Eagle",
-          badge: "Most Popular",
           price: "$199",
           period: "/ month",
-          hoursText: "8 HRS/month",
+          hours: 8,
+          hoursText: "8 HRS / month",
           rate: "avg. $24.88/hr",
-          comparison: "Compared with roughly $90 for 2 public hours at the average dynamic rate.",
-          discount: "30%",
-          booking: "10-day",
+          savings: "Save ~$161/mo",
+          tooltip: "Compared to a nonmember booking 8 hours at an average public dynamic rate of about $45/hr.",
+          details: ["30% off extra hours", "10-day advance booking", "Best for weekly golfers"],
           featured: true,
           disabled: false
         },
         {
           name: "Ace",
-          badge: "Premium",
           price: "$329",
           period: "/ month",
-          hoursText: "14 HRS/month",
+          hours: 14,
+          hoursText: "14 HRS / month",
           rate: "avg. $23.50/hr",
-          comparison: "Compared with roughly $90 for 2 public hours at the average dynamic rate.",
-          discount: "35%",
-          booking: "14-day",
+          savings: "Save ~$301/mo",
+          tooltip: "Compared to a nonmember booking 14 hours at an average public dynamic rate of about $45/hr.",
+          details: ["35% off extra hours", "14-day advance booking", "Best for high-frequency players"],
           featured: false,
           disabled: false
         }
@@ -591,57 +614,49 @@
       annual: [
         {
           name: "Flex",
-          badge: "Not Available",
           price: "—",
           period: "",
-          savings: "",
           hoursText: "No annual Flex plan",
           rate: "Choose Monthly Flex or upgrade to Birdie Annual.",
-          comparison: "Annual plans are designed for golfers ready to commit to a full year.",
-          discount: "—",
-          booking: "—",
+          savings: "Monthly only",
+          tooltip: "Flex is intended as a lower-commitment monthly option. Annual plans begin at Birdie.",
+          details: ["Monthly Flex remains available", "Upgrade to Birdie Annual for annual savings", "Best for casual users"],
           featured: false,
           disabled: true
         },
         {
           name: "Birdie Annual",
-          badge: "Annual Value",
           price: "$1,099",
           period: "/ year",
-          savings: "Save 16%",
-          hoursText: "48 HRS/year",
+          hoursText: "48 HRS / year",
           rate: "avg. $22.90/hr",
-          comparison: "Compared with roughly $90 for 2 public hours at the average dynamic rate.",
-          discount: "20%",
-          booking: "7-day",
+          savings: "Save 16%",
+          tooltip: "Annual savings compared to paying the Birdie monthly rate for 12 months.",
+          details: ["20% off extra hours", "7-day advance booking", "Limited one-month rollover"],
           featured: false,
           disabled: false
         },
         {
           name: "Eagle Annual",
-          badge: "Best Annual Value",
           price: "$1,999",
           period: "/ year",
-          savings: "Save 16%",
-          hoursText: "96 HRS/year",
+          hoursText: "96 HRS / year",
           rate: "avg. $20.82/hr",
-          comparison: "Compared with roughly $90 for 2 public hours at the average dynamic rate.",
-          discount: "30%",
-          booking: "10-day",
+          savings: "Save 16%",
+          tooltip: "Annual savings compared to paying the Eagle monthly rate for 12 months.",
+          details: ["30% off extra hours", "10-day advance booking", "Limited one-month rollover"],
           featured: true,
           disabled: false
         },
         {
           name: "Ace Annual",
-          badge: "Premium Annual",
           price: "$3,199",
           period: "/ year",
-          savings: "Save 19%",
-          hoursText: "168 HRS/year",
+          hoursText: "168 HRS / year",
           rate: "avg. $19.04/hr",
-          comparison: "Compared with roughly $90 for 2 public hours at the average dynamic rate.",
-          discount: "35%",
-          booking: "14-day",
+          savings: "Save 19%",
+          tooltip: "Annual savings compared to paying the Ace monthly rate for 12 months.",
+          details: ["35% off extra hours", "14-day advance booking", "Limited one-month rollover"],
           featured: false,
           disabled: false
         }
@@ -658,25 +673,21 @@
       memberships[type].forEach(plan => {
         grid.innerHTML += `
           <div class="card ${plan.featured ? "featured" : ""} ${plan.disabled ? "disabled" : ""}">
-            <span class="badge">${plan.badge}</span>
-            <h3>${plan.name}</h3>
-
-            <div class="price-row">
-              <div class="price">${plan.price} <span>${plan.period}</span></div>
-              ${type === "annual" && plan.savings ? `<span class="save-badge">${plan.savings}</span>` : ""}
+            <div class="plan-top">
+              <h3 class="plan-name">${plan.name}</h3>
+              <span class="savings-pill">
+                ${plan.savings}
+                <span class="info-dot" data-tip="${plan.tooltip}">?</span>
+              </span>
             </div>
 
-            <div class="hours-block">
-              <div class="hours-main">${plan.hoursText}</div>
-              <div class="hours-sub">${plan.rate}</div>
-              <div class="compare-note">${plan.comparison}</div>
-            </div>
+            <div class="price">${plan.price} <span>${plan.period}</span></div>
+            <div class="hours-line">${plan.hoursText}</div>
+            <div class="rate-line">${plan.rate}</div>
 
-            <ul>
-              <li>${plan.discount} off extra hours</li>
-              <li>${plan.booking} advance booking</li>
-              <li>Use included hours anytime space is available</li>
-            </ul>
+            <div class="details">
+              ${plan.details.map(item => `<div>${item}</div>`).join("")}
+            </div>
 
             <a href="#" class="button ${plan.featured ? "" : "secondary"} ${plan.disabled ? "disabled-btn" : ""}">
               ${plan.disabled ? "Monthly Only" : `Choose ${plan.name.replace(" Annual", "")}`}
