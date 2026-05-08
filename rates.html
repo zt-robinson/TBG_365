@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Bunker Golf 365 | Rates</title>
+
+  <style>
+    :root {
+      --black: #050505;
+      --panel: #181c18;
+      --panel2: #20251f;
+      --white: #f5f5f0;
+      --muted: #afb5aa;
+      --line: rgba(255,255,255,.1);
+      --lime: #b7e04a;
+      --orange: #ff7a1a;
+      --shadow: 0 20px 55px rgba(0,0,0,.32);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--black);
+      color: var(--white);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: rgba(5,5,5,.84);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      max-width: 1220px;
+      margin: auto;
+      padding: 14px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .logo span { color: var(--lime); }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .88rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--lime);
+    }
+
+    header {
+      padding: 44px 22px 34px;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(183,224,74,.18), transparent 24%),
+        linear-gradient(135deg, #0a0d0a, #151a14);
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--lime);
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: .22em;
+      margin-bottom: 12px;
+      font-size: .72rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 5.5vw, 4.7rem);
+      line-height: .95;
+      text-transform: uppercase;
+    }
+
+    header p {
+      max-width: 760px;
+      margin: 16px auto 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 20px;
+    }
+
+    .section-head {
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.85rem;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+
+    .section-head p {
+      margin: 6px 0 0;
+      max-width: 780px;
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid.four {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: linear-gradient(180deg, var(--panel2), var(--panel));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 17px;
+      box-shadow: var(--shadow);
+    }
+
+    .card.featured {
+      border: 1px solid var(--lime);
+      box-shadow: 0 0 0 1px rgba(183,224,74,.35), var(--shadow);
+    }
+
+    .mini-label {
+      color: var(--lime);
+      font-size: .7rem;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.18rem;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .rate-hero {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .current-rate {
+      background:
+        radial-gradient(circle at 90% 12%, rgba(255,122,26,.22), transparent 30%),
+        linear-gradient(180deg, #20251f, #111411);
+      border: 1px solid rgba(183,224,74,.28);
+    }
+
+    .big-rate {
+      font-size: clamp(3rem, 7vw, 5rem);
+      line-height: .95;
+      letter-spacing: -.06em;
+      font-weight: 950;
+      margin: 10px 0 4px;
+      color: var(--white);
+    }
+
+    .big-rate span {
+      font-size: 1rem;
+      color: var(--muted);
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+
+    .rate-note {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.45;
+      max-width: 420px;
+    }
+
+    .rate-ladder {
+      display: grid;
+      gap: 9px;
+    }
+
+    .rate-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .rate-row:last-child {
+      border-bottom: 0;
+    }
+
+    .rate-row strong {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+
+    .rate-row span {
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .price-pill {
+      color: #101410;
+      background: var(--lime);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: .82rem;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .sample-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: var(--panel);
+    }
+
+    .sample-table th,
+    .sample-table td {
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+
+    .sample-table th {
+      background: #0d100d;
+      color: var(--lime);
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .sample-table td {
+      color: #e8ebe4;
+      font-size: .94rem;
+    }
+
+    .sample-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .button {
+      display: inline-block;
+      text-align: center;
+      padding: 11px 16px;
+      border-radius: 12px;
+      background: var(--lime);
+      color: #101410;
+      text-decoration: none;
+      font-weight: 950;
+      text-transform: uppercase;
+      font-size: .82rem;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--lime);
+      border: 1px solid rgba(183,224,74,.55);
+    }
+
+    .callout {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(183,224,74,.08);
+      border: 1px solid rgba(183,224,74,.28);
+      color: #dce8c0;
+      font-size: .95rem;
+      line-height: 1.55;
+    }
+
+    footer {
+      margin-top: 24px;
+      padding: 26px 20px;
+      background: #050505;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid var(--line);
+      font-size: .9rem;
+    }
+
+    @media (max-width: 950px) {
+      .rate-hero,
+      .grid.two,
+      .grid.three,
+      .grid.four {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 650px) {
+      .rate-hero,
+      .grid.two,
+      .grid.three,
+      .grid.four {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">The Bunker <span>365</span></div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="memberships.html">Memberships</a>
+        <a href="rates.html" class="active">Rates</a>
+        <a href="#">Lessons</a>
+        <a href="#">Leagues</a>
+        <a href="#">Events</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="eyebrow">Public Rates</div>
+    <h1>Book When You Want.</h1>
+    <p>Public simulator rates adjust based on demand. Weekends, prime evening hours, and peak indoor golf season will generally cost more than low-demand windows.</p>
+  </header>
+
+  <main>
+
+    <section class="container">
+      <div class="rate-hero">
+        <div class="card current-rate">
+          <div class="mini-label">Current Rate Estimate</div>
+          <h2>Public Booking</h2>
+          <div class="big-rate">$45 <span>/ hour</span></div>
+          <div class="rate-note">
+            This is the central public-rate estimate used for comparison. Actual public pricing may vary by day, time, season, and bay availability.
+          </div>
+
+          <div class="button-row">
+            <a href="#" class="button">Book a Bay</a>
+            <a href="memberships.html" class="button secondary">View Memberships</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="mini-label">Rate Ladder</div>
+          <h2>How Pricing Moves</h2>
+
+          <div class="rate-ladder">
+            <div class="rate-row">
+              <div>
+                <strong>Red-Eye</strong>
+                <span>Lowest-demand windows.</span>
+              </div>
+              <div class="price-pill">lowest</div>
+            </div>
+
+            <div class="rate-row">
+              <div>
+                <strong>Off-Peak</strong>
+                <span>Lower-demand weekday or daytime hours.</span>
+              </div>
+              <div class="price-pill">lower</div>
+            </div>
+
+            <div class="rate-row">
+              <div>
+                <strong>Shoulder</strong>
+                <span>Moderate demand, between off-peak and peak.</span>
+              </div>
+              <div class="price-pill">mid</div>
+            </div>
+
+            <div class="rate-row">
+              <div>
+                <strong>Peak</strong>
+                <span>Evenings, busier days, and stronger demand windows.</span>
+              </div>
+              <div class="price-pill">higher</div>
+            </div>
+
+            <div class="rate-row">
+              <div>
+                <strong>Premium Peak</strong>
+                <span>Highest-demand windows, often weekends or winter prime time.</span>
+              </div>
+              <div class="price-pill">highest</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="section-head">
+        <h2>What Affects the Rate?</h2>
+        <p>Dynamic pricing helps keep access flexible while reflecting when simulator time is most in demand.</p>
+      </div>
+
+      <div class="grid four">
+        <div class="card">
+          <div class="mini-label">01</div>
+          <h3>Time of Day</h3>
+          <p>Prime evening hours generally price higher than early morning, midday, or late-night windows.</p>
+        </div>
+
+        <div class="card">
+          <div class="mini-label">02</div>
+          <h3>Day of Week</h3>
+          <p>Weekend hours usually carry higher demand than standard weekday windows.</p>
+        </div>
+
+        <div class="card">
+          <div class="mini-label">03</div>
+          <h3>Season</h3>
+          <p>Indoor golf demand tends to increase during colder months and offseason training periods.</p>
+        </div>
+
+        <div class="card">
+          <div class="mini-label">04</div>
+          <h3>Availability</h3>
+          <p>Popular windows may price higher as demand increases and available bay time becomes more limited.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="section-head">
+        <h2>Sample Public Rates</h2>
+        <p>These are sample examples for customer understanding, not guaranteed rates for every booking window.</p>
+      </div>
+
+      <table class="sample-table">
+        <thead>
+          <tr>
+            <th>Example Window</th>
+            <th>Typical Rate Class</th>
+            <th>Sample Rate</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Weekday morning</td>
+            <td>Off-Peak</td>
+            <td>From ~$30/hr</td>
+            <td>Flexible practice, solo work, value seekers</td>
+          </tr>
+          <tr>
+            <td>Weekday evening</td>
+            <td>Peak</td>
+            <td>~$45–$55/hr</td>
+            <td>After-work rounds and regular play</td>
+          </tr>
+          <tr>
+            <td>Weekend prime time</td>
+            <td>Premium Peak</td>
+            <td>~$65–$75/hr</td>
+            <td>Groups, social rounds, high-demand windows</td>
+          </tr>
+          <tr>
+            <td>Late-night / low-demand</td>
+            <td>Red-Eye</td>
+            <td>Lower-rate windows may be available</td>
+            <td>Golfers with flexible schedules</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="container">
+      <div class="section-head">
+        <h2>Ways to Save</h2>
+        <p>If you plan to play more than once in a while, prepaid packs or memberships may reduce your effective hourly cost.</p>
+      </div>
+
+      <div class="grid three">
+        <div class="card">
+          <div class="mini-label">Flexible</div>
+          <h3>Book Off-Peak</h3>
+          <p>Golfers with flexible schedules can often find better value by booking lower-demand windows.</p>
+        </div>
+
+        <div class="card">
+          <div class="mini-label">Prepaid</div>
+          <h3>Use a Practice Pack</h3>
+          <p>Practice packs let you prepay for simulator time without committing to a monthly membership.</p>
+        </div>
+
+        <div class="card featured">
+          <div class="mini-label">Best Value</div>
+          <h3>Become a Member</h3>
+          <p>Memberships include monthly or annual hours, priority booking, and discounted extra hours.</p>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <a href="memberships.html" class="button">Compare Memberships</a>
+        <a href="#" class="button secondary">View Practice Packs</a>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="callout">
+        Public rates are designed to be flexible. Memberships and practice packs are designed to give frequent golfers better predictability and a lower effective hourly rate.
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    The Bunker Golf 365 · Public rates, practice packs, and indoor golf access
+  </footer>
+
+</body>
+</html>
